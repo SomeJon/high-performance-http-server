@@ -1,0 +1,355 @@
+{
+	"info": {
+		"_postman_id": "1d00c865-b6c2-4596-bb1f-62a653f6d882",
+		"name": "C++ Web Server Test Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "35187228"
+	},
+	"item": [
+		{
+			"name": "Home Endpoint",
+			"item": [
+				{
+					"name": "GET Home (English)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/home?lang=en",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"home"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "en"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Home (Hebrew)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/home?lang=he",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"home"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "he"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Home (French)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/home?lang=fr",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"home"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "fr"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "HEAD Home",
+					"request": {
+						"method": "HEAD",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/home?lang=en",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"home"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "en"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OPTIONS Home",
+					"request": {
+						"method": "OPTIONS",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/home",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"home"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Post Message Endpoint",
+			"item": [
+				{
+					"name": "POST Message",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "This is a test message sent from Postman.",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/postmessage",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"postmessage"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OPTIONS Post Message",
+					"request": {
+						"method": "OPTIONS",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/postmessage",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"postmessage"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "File Operations",
+			"item": [
+				{
+					"name": "PUT Create File",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "This is the content of the test.txt file.\nIt was created by a PUT request.",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/file/test.txt",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"file",
+								"test.txt"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET File",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/file/test.txt",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"file",
+								"test.txt"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE File",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/file/test.txt",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"file",
+								"test.txt"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OPTIONS File Path",
+					"request": {
+						"method": "OPTIONS",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/file/somefile.txt",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"file",
+								"somefile.txt"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Trace Endpoint",
+			"item": [
+				{
+					"name": "TRACE Request",
+					"request": {
+						"method": "TRACE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/trace",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trace"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Error Handling",
+			"item": [
+				{
+					"name": "GET Invalid Path",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/nonexistent",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"nonexistent"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Invalid File Path (Subdirectory)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "This should be rejected.",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/file/invalid/path.txt",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"file",
+								"invalid",
+								"path.txt"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Invalid File Extension",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/file/document.pdf",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"file",
+								"document.pdf"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080",
+			"type": "string"
+		}
+	]
+}
