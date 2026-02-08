@@ -1,26 +1,32 @@
 # High-Performance Non-Blocking HTTP Server
-A single-threaded, high-concurrency web server built from the ground up using C++ and the WinSock2/Berkeley Sockets API. This project was engineered to handle multiple concurrent connections efficiently without the overhead of multi-threading.
-
-## 🚀 Key Systems Features
-* **I/O Multiplexing:** Utilizes the `select()` system call to monitor multiple file descriptors simultaneously, allowing a single-threaded process to manage dozens of concurrent connections.
-* **Non-Blocking Architecture:** All sockets are configured to be non-blocking, ensuring the server remains responsive and never stalls on a single slow or malicious client.
-* **RFC 2616 Compliance:** Implements a custom parser for the HTTP/1.1 protocol, supporting methods including `GET`, `POST`, `PUT`, `DELETE`, `OPTIONS`, `HEAD`, and `TRACE`.
-* **Stateful Connection Management:** Tracks the lifecycle of every connection through a robust state machine (`LISTENING` → `RECEIVING` → `PROCESSING` → `SENDING`).
-
-
-
-## 🛡️ Security & Robustness
-* **Resource Protection:** Includes a custom inactivity timeout mechanism (120 seconds) that automatically reaps "stuck" connections to prevent resource exhaustion attacks.
-* **Memory Safety:** Manual buffer management and parsing logic designed to handle raw byte transit safely at the system level.
-* **Error Handling:** Implements standardized HTTP status codes (404, 400, 500) with custom error pages and detailed server-side logging.
+A single-threaded, high-concurrency web server developed from scratch using C++ and the Berkeley Sockets API (WinSock2). This project implements a fully non-blocking architecture to handle multiple concurrent clients within a single execution thread.
 
 ## 📂 Project Structure
-- `http/`: Core HTTP logic including Request/Response objects and Endpoint interfaces.
-- `SocketManager`: Manages the lifecycle of active connections and the `select()` loop.
-- `Endpoints`: Implementation of REST-like endpoints for file management and language-specific content delivery.
-- `Postman Collection`: Includes a test suite for verifying RFC compliance across all supported methods.
+To keep the networking and application layers separate, the project is organized as follows:
 
-## 🛠️ Technical Stack
-* **Language:** C++17
-* **APIs:** WinSock2 / Berkeley Sockets
-* **Testing:** Postman
+* **Root Directory**: Contains the core server logic, socket management, and entry point.
+  * `nonblocking server.cpp`: The main loop and `select()` multiplexing logic.
+  * `SocketManager.cpp / .h`: Handles the lifecycle of sockets and inactivity reaps.
+  * `SocketData.h`: Defines the state machine and shared data structures.
+* **http/**: A dedicated module for protocol-specific logic.
+  * `HttpRequest / HttpResponse`: Custom parsers for RFC 2616 compliance.
+  * `Endpoints`: Implementation of REST-like services (File I/O, language support).
+  * `HttpStatusCodes.h`: Standardized HTTP status response mappings.
+* **Testing**:
+  * `Web Server Test Collection.json`: A Postman collection for automated API verification.
+
+
+
+## 🚀 Key Technical Features
+* **I/O Multiplexing:** Uses `select()` to monitor dozens of file descriptors simultaneously, ensuring no single connection blocks the server.
+* **Protocol Adherence:** Implements a robust parser for **RFC 2616**, supporting `GET`, `POST`, `PUT`, `DELETE`, `OPTIONS`, `HEAD`, and `TRACE`.
+* **Stateful Connections:** A custom state machine tracks every socket from `LISTENING` through `RECEIVING` and `SENDING`.
+* **Resource Security:** Implements a 120-second timeout mechanism to drop inactive connections and prevent resource exhaustion.
+
+
+
+## 🛠️ How to Compile
+This project is built using standard C++17 and requires the `Ws2_32.lib` library for networking.
+1. Ensure the `http/` folder is in the same directory as the source files.
+2. Compile via your preferred C++ compiler (e.g., `g++` or MSVC).
+3. Run the executable; the server listens on port `8080` by default.
